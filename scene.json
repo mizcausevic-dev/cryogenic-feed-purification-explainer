@@ -11,8 +11,8 @@
       "glyph": "adsorbent",
       "label": "Abstract adsorbent vessels upstream of cold box",
       "role": "path",
-      "x": 0.5,
-      "y": 0.16
+      "x": 0.14,
+      "y": 0.32
     },
     {
       "id": "n2",
@@ -20,23 +20,23 @@
       "label": "Water",
       "role": "path",
       "x": 0.5,
-      "y": 0.3
+      "y": 0.32
     },
     {
       "id": "n3",
       "glyph": "sensor",
       "label": "CO2",
       "role": "path",
-      "x": 0.5,
-      "y": 0.44
+      "x": 0.86,
+      "y": 0.32
     },
     {
       "id": "n4",
       "glyph": "pipe",
       "label": "Purified feed",
       "role": "path",
-      "x": 0.5,
-      "y": 0.58
+      "x": 0.14,
+      "y": 0.7
     },
     {
       "id": "n5",
@@ -44,15 +44,15 @@
       "label": "Separate regeneration state conceptually",
       "role": "sense",
       "x": 0.5,
-      "y": 0.72
+      "y": 0.7
     },
     {
       "id": "n6",
       "glyph": "coldbox",
       "label": "Protect downstream low-temperature equipment",
       "role": "path",
-      "x": 0.5,
-      "y": 0.86
+      "x": 0.86,
+      "y": 0.7
     }
   ],
   "edges": [
