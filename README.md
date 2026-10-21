@@ -4,6 +4,8 @@
 
 Live plate: https://mizcausevic-dev.github.io/cryogenic-feed-purification-explainer/
 
+Repository: https://github.com/mizcausevic-dev/cryogenic-feed-purification-explainer
+
 ## What this is
 
 An interactive anatomy plate for Cryogenic Feed Purification. Play, scrub, or jump the five stages. The same frame always draws the same picture.
