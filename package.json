@@ -1,0 +1,28 @@
+{
+  "name": "cryogenic-feed-purification-anatomy",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Deterministic 34s (1,020-frame @ 30fps) code-driven anatomy explainer of cryogenic feed purification upstream of an air separation unit cold box.",
+  "scripts": {
+    "dev": "vite --port 43123 --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 43124 --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "lucide-react": "^1.61.0",
+    "motion": "^14.5.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.4"
+  }
+}
