@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cryogenic Feed Purification, Explained in 34 Seconds | Anatomy-Style Motion Explainer</title>
+<meta name="description" content="A code-driven, frame-accurate (1,020 frames at 30 fps) anatomy-style explainer of cryogenic feed purification: how adsorbent vessels remove water and CO2 upstream of the cold box, how purified feed is tracked, how regeneration works conceptually, and why downstream low-temperature equipment is protected."/>
+<meta name="keywords" content="cryogenic air separation, feed purification, adsorbent vessels, cold box, water removal, CO2 removal, industrial gases, cryogenics, front-end purification"/>
+<meta property="og:title" content="Cryogenic Feed Purification, Explained in 34 Seconds"/>
+<meta property="og:description" content="1,020 frames. Five phases. One job: keep water and CO2 out of the cold box. A code-driven anatomy-style motion explainer."/>
+<meta property="og:type" content="video.other"/><meta property="og:image" content="./hero-cryogenic-feed-purification.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Cryogenic Feed Purification, Explained in 34 Seconds","description":"Conceptual, code-driven anatomy-style explainer of adsorbent feed purification upstream of a cryogenic cold box. Qualitative only. Not an operating procedure.","author":{"@type":"Organization","name":"Kinetic Gain LLC"},"about":["Cryogenic air separation","Front-end purification","Adsorption"]}</script>
+<link rel="stylesheet" href="/src/style.css"/>
+</head><body>
+<header class="top">
+  <div><p class="kicker">INDUSTRIAL GASES &amp; CRYOGENICS &nbsp;·&nbsp; ANATOMY-STYLE MOTION EXPLAINER &nbsp;·&nbsp; CONCEPTUAL SCHEMATIC</p>
+  <h1>Cryogenic feed purification</h1>
+  <p class="sub">Remove water and CO<sub>2</sub> <em>before</em> the cold box. 34 seconds. 1,020 frames. No recipe. No guarantee. Just the mechanism, made visible.</p></div>
+  <div class="badge"><strong>34s · 30 fps</strong><span>Frames 0–1019 · Code-driven</span><a href="./article/medium-article-Claude.html">Read the Medium article →</a></div>
+</header>
+
+<main class="layout">
+  <section class="stageCard">
+    <div class="stageHead"><span id="phaseLabel">PHASE 1 · REVEAL</span><span id="tc">f 0000 / 1019 &nbsp;·&nbsp; 00.00s / 34.00s</span></div>
+    <div class="canvasWrap"><canvas id="stage" width="1280" height="720" aria-label="Animation stage: adsorbent vessels upstream of a cryogenic cold box"></canvas>
+      <div class="scaleNote">CONCEPTUAL SCHEMATIC · NOT TO SCALE · TIME COMPRESSED · QUALITATIVE ONLY</div></div>
+
+    <div class="controls">
+      <button id="playBtn" class="primary">▶ Play</button>
+      <button id="prevF">−1 frame</button><button id="nextF">+1 frame</button>
+      <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1× (30 fps)</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+      <button id="exportBtn">Export frame PNG</button>
+      <label class="chk"><input type="checkbox" id="showLabels" checked> Labels</label>
+      <label class="chk"><input type="checkbox" id="showInset" checked> Qualitative inset</label>
+    </div>
+    <input id="scrub" type="range" min="0" max="1019" value="0" step="1" aria-label="Scrub frames 0 to 1019"/>
+    <div class="phases" id="phases"></div>
+    <div class="transport"><span>● <b style="color:#00E5FF">CYAN</b> transport / signal</span><span>● <b style="color:#FFD166">GOLD</b> energy / actuation</span><span>● <b style="color:#9D4EDD">VIOLET</b> control / state</span><span>● <b style="color:#8ea0b5">NEUTRAL</b> vessel / structure</span></div>
+  </section>
+
+  <aside class="side">
+    <article class="panel"><h2>What this product is</h2><p>A frame-accurate, code-driven explainer that shows <strong>why purification sits upstream of the cold box</strong> and what changes when a vessel moves from adsorbing to regenerating.</p>
+    <dl><div><dt>Who it is for</dt><dd>Process engineers, operators in training, technical buyers, and students who need the causal chain without an operating procedure.</dd></div>
+    <div><dt>Why it wins</dt><dd>Every frame is a function of a frame number. Scrub it, step it, export it. The mechanism stays inspectable.</dd></div>
+    <div><dt>How it makes money</dt><dd>Lead magnet for industrial-gases content, training modules, and sponsor placements tied to <code>sponsor_click</code> / <code>lead_submit</code> events where a real offer exists.</dd></div></dl></article>
+
+    <article class="panel" id="phaseDetail"></article>
+
+    <article class="panel warn"><h2>Technical limits</h2><ul>
+      <li>Adsorbents and cycles vary by design and duty. This film shows <strong>one conceptual arrangement</strong>, not a product geometry.</li>
+      <li><strong>No regeneration recipe.</strong> No temperatures, pressures, flows, times, or sequences you could operate from.</li>
+      <li><strong>No total contaminant-removal guarantee.</strong> Breakthrough depends on feed, condition, and cycle state.</li>
+      <li>Graphs are <strong>qualitative</strong>. Axes are intentionally unnumbered where no measured data exists.</li>
+      <li>No dimensions, materials of construction, efficiencies, certifications, or vendor internals are claimed.</li>
+    </ul></article>
+
+    <article class="panel"><h2>Mass accounting (conceptual)</h2>
+      <div class="mass"><div><span>Feed in</span><b>Air + H₂O + CO₂ + trace</b></div><div><span>Retained on bed</span><b style="color:#FFD166">H₂O + CO₂ (adsorbed phase)</b></div><div><span>Purified feed out</span><b style="color:#00E5FF">Air, depleted in H₂O / CO₂</b></div><div><span>Regeneration out</span><b style="color:#9D4EDD">Purge + desorbed H₂O / CO₂</b></div></div>
+      <p class="small">Nothing disappears. What the bed holds in one state, it releases in another. That accounting is the whole story.</p></article>
+
+    <article class="panel"><h2>Discover · Engage · Convert</h2><ol class="small-ol">
+      <li><strong>Discover:</strong> SEO article + hero image + this interactive film (search: cryogenic feed purification, front-end purification).</li>
+      <li><strong>Engage:</strong> Scrub to a phase, step frame by frame, export a still for a slide or SOP training deck.</li>
+      <li><strong>Convert:</strong> Use the article CTA for a training or content enquiry. No form collects data on this page.</li></ol>
+      <a class="cta" href="./article/medium-article-Claude.html">Read the full article</a></article>
+  </aside>
+</main>
+
+<section class="grid">
+  <article><h3>1 · Product intent</h3><p>Make an invisible front-end step legible in 34 seconds without turning it into an operating instruction.</p></article>
+  <article><h3>2 · Structure</h3><p>Five timed phases map to five causal questions: Where is it? What is removed? Where does clean feed go? How does the bed reset? What is protected?</p></article>
+  <article><h3>3 · Launch</h3><p>Static build to GitHub Pages (<code>gh-pages</code>). No backend, no secrets, no personal data collected.</p></article>
+  <article><h3>4 · Improve after launch</h3><p>Add measured data only when a sourced dataset exists. Add language tracks, chapter stills, and a printable one-page schematic.</p></article>
+</section>
+
+<footer><p>Reference basis (process architecture only): Air Products, Cryogenic Nitrogen Plant / on-site nitrogen generation. Camera, palette, cutaways, and timing are original illustrative direction, not validated observations. This is not a certified design, simulation, or operating procedure. Do not use it to operate hazardous equipment.</p>
+<p>Built as deterministic code: <code>draw(frame)</code> for frames 0–1019 at 30 fps. Repurposes to any cyclic separation (dryers, TSA/PSA guard beds, solvent recovery) by swapping labels and retained species.</p></footer>
+<script type="module" src="/src/main.js"></script>
+</body></html>

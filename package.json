@@ -1,0 +1,13 @@
+{
+  "name": "cryogenic-feed-purification-explainer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Code-driven anatomy-style motion explainer of cryogenic feed purification. 34s, 30fps, 1020 frames.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 43127",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 43127"
+  },
+  "devDependencies": { "vite": "^6.0.0" }
+}

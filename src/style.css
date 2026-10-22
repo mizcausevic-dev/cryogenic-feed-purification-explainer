@@ -1,0 +1,26 @@
+:root{--bg:#0B1019;--panel:#111a2a;--panel2:#0f1624;--mat:#344257;--ink:#e8eef6;--mut:#93a3b8;--cyan:#00E5FF;--gold:#FFD166;--violet:#9D4EDD;--line:#22314a;--font-body:"Space Grotesk",system-ui,sans-serif;--font-mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px}
+a{color:var(--cyan)} .top{display:flex;justify-content:space-between;gap:20px;align-items:start;padding:26px 28px 10px;max-width:1460px;margin:auto}
+.kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--gold);margin:0}
+h1{font-size:clamp(34px,5vw,64px);line-height:.95;margin:10px 0;letter-spacing:-.03em}
+.sub{color:var(--mut);max-width:720px;font-size:18px}.sub em{color:var(--cyan);font-style:normal}
+.badge{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:14px;min-width:210px;display:grid;gap:6px}.badge span{color:var(--mut);font-size:12px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px;max-width:1460px;margin:auto;padding:14px 28px}
+.stageCard,.panel{background:linear-gradient(180deg,#121d31,#0d1524);border:1px solid var(--line);border-radius:18px;padding:16px}
+.stageHead{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--mut);margin-bottom:10px}#phaseLabel{color:var(--cyan)}
+.canvasWrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid #263957;background:#0B1019}
+canvas{width:100%;height:auto;display:block}
+.scaleNote{position:absolute;right:10px;bottom:10px;font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;background:rgba(5,10,18,.78);border:1px solid var(--line);padding:5px 7px;border-radius:99px;color:#c8d3e2}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 8px}button,select{background:#1a2942;color:var(--ink);border:1px solid #2b3d5e;border-radius:10px;padding:9px 12px;cursor:pointer;font-family:var(--font-body)}button:hover{border-color:var(--cyan)}button.primary{background:var(--cyan);color:#031018;font-weight:800;border-color:var(--cyan)}
+#scrub{width:100%;accent-color:var(--cyan);height:28px}
+.phases{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.phases button{text-align:left;font-size:11px;padding:9px}.phases button.active{border-color:var(--gold);background:#2a2110}.phases b{display:block;font-size:12px;color:#fff}
+.transport{display:flex;flex-wrap:wrap;gap:14px;font-family:var(--font-mono);font-size:11px;color:var(--mut);margin-top:12px}
+.side{display:grid;gap:14px;align-content:start}.panel h2{margin:0 0 8px;font-size:18px}.panel p,.panel li,.panel dd{color:var(--mut);line-height:1.55;font-size:14px}.panel dt{font-family:var(--font-mono);font-size:11px;color:var(--gold);text-transform:uppercase}.panel dl{display:grid;gap:10px}.warn{border-color:#4a3510}.warn li::marker{color:var(--gold)}
+.mass{display:grid;gap:7px}.mass div{display:flex;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:8px;font-size:12px}.mass span{color:var(--mut)}
+.small{font-size:13px;color:var(--mut)} .cta{display:block;text-align:center;background:var(--gold);color:#171100;font-weight:800;text-decoration:none;padding:12px;border-radius:11px;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1460px;margin:auto;padding:0 28px 18px}.grid article{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px}.grid p{color:var(--mut);line-height:1.55;font-size:14px}
+footer{max-width:1460px;margin:auto;padding:10px 28px 30px;color:#718198;font-size:12px;line-height:1.6}
+code{font-family:var(--font-mono);color:var(--cyan)} .chk{font-size:13px;color:var(--mut);display:flex;gap:6px;align-items:center}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.top{flex-direction:column}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.phases{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
