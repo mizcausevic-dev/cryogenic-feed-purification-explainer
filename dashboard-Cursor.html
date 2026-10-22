@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" data-theme="cosmic-cyber" data-mode="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cryogenic Feed Purification — Strategy, Architecture &amp; 1,020-Frame Telemetry Dashboard</title>
+  <meta name="description" content="Single-file 7-theme strategy, architecture, and state-machine dashboard for the 34-second (1,020-frame) Cryogenic Feed Purification Anatomy Explainer." />
+  <style>
+    :root {
+      --bg: #0B1019;
+      --panel: #101826;
+      --panel-alt: #162235;
+      --text: #F1F5F9;
+      --muted: #94A3B8;
+      --border: #344257;
+      --accent-cyan: #00E5FF;
+      --accent-gold: #FFD166;
+      --accent-violet: #9D4EDD;
+      --radius: 12px;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      --font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    /* Theme 1: Bento Grid */
+    [data-theme="bento-grid"][data-mode="dark"] {
+      --bg: #090D14; --panel: #121824; --panel-alt: #192233; --text: #F8FAFC; --muted: #94A3B8; --border: #2E3C52;
+      --accent-cyan: #00E5FF; --accent-gold: #FFD166; --accent-violet: #9D4EDD; --radius: 18px;
+    }
+    [data-theme="bento-grid"][data-mode="light"] {
+      --bg: #F1F5F9; --panel: #FFFFFF; --panel-alt: #E2E8F0; --text: #0F172A; --muted: #475569; --border: #CBD5E1;
+      --accent-cyan: #0284C7; --accent-gold: #D97706; --accent-violet: #7C3AED; --radius: 18px;
+    }
+
+    /* Theme 2: Cosmic Cyber (Default Brief Palette) */
+    [data-theme="cosmic-cyber"][data-mode="dark"] {
+      --bg: #0B1019; --panel: #101826; --panel-alt: #162235; --text: #F1F5F9; --muted: #94A3B8; --border: #344257;
+      --accent-cyan: #00E5FF; --accent-gold: #FFD166; --accent-violet: #9D4EDD; --radius: 12px;
+    }
+    [data-theme="cosmic-cyber"][data-mode="light"] {
+      --bg: #EEF2F6; --panel: #FFFFFF; --panel-alt: #E2E8F0; --text: #0B1019; --muted: #475569; --border: #94A3B8;
+      --accent-cyan: #0088A3; --accent-gold: #B45309; --accent-violet: #6D28D9; --radius: 12px;
+    }
+
+    /* Theme 3: Swiss Architect */
+    [data-theme="swiss-architect"][data-mode="dark"] {
+      --bg: #0C0E12; --panel: #141820; --panel-alt: #1C222D; --text: #FFFFFF; --muted: #A1A1AA; --border: #3F3F46;
+      --accent-cyan: #00E5FF; --accent-gold: #FACC15; --accent-violet: #A855F7; --radius: 2px;
+    }
+    [data-theme="swiss-architect"][data-mode="light"] {
+      --bg: #FAFAFA; --panel: #FFFFFF; --panel-alt: #F4F4F5; --text: #09090B; --muted: #52525B; --border: #D4D4D8;
+      --accent-cyan: #0369A1; --accent-gold: #CA8A04; --accent-violet: #7E22CE; --radius: 2px;
+    }
+
+    /* Theme 4: Aqua Web 2.0 */
+    [data-theme="aqua-web"][data-mode="dark"] {
+      --bg: #07131E; --panel: #0D2235; --panel-alt: #13304A; --text: #E0F2FE; --muted: #7DD3FC; --border: #1E496D;
+      --accent-cyan: #00E5FF; --accent-gold: #FFD166; --accent-violet: #C084FC; --radius: 16px;
+    }
+    [data-theme="aqua-web"][data-mode="light"] {
+      --bg: #E0F2FE; --panel: #FFFFFF; --panel-alt: #BAE6FD; --text: #0C4A6E; --muted: #0369A1; --border: #7DD3FC;
+      --accent-cyan: #0284C7; --accent-gold: #D97706; --accent-violet: #7C3AED; --radius: 16px;
+    }
+
+    /* Theme 5: Pop Brutalist */
+    [data-theme="pop-brutalist"][data-mode="dark"] {
+      --bg: #0B1019; --panel: #151E2E; --panel-alt: #1E293B; --text: #FFFFFF; --muted: #CBD5E1; --border: #00E5FF;
+      --accent-cyan: #00E5FF; --accent-gold: #FFD166; --accent-violet: #9D4EDD; --radius: 0px;
+    }
+    [data-theme="pop-brutalist"][data-mode="light"] {
+      --bg: #FEF9C3; --panel: #FFFFFF; --panel-alt: #FDE047; --text: #000000; --muted: #334155; --border: #000000;
+      --accent-cyan: #0284C7; --accent-gold: #CA8A04; --accent-violet: #7C3AED; --radius: 0px;
+    }
+
+    /* Theme 6: Steel Tactical */
+    [data-theme="steel-tactical"][data-mode="dark"] {
+      --bg: #0A0E14; --panel: #141C26; --panel-alt: #1D2836; --text: #E2E8F0; --muted: #8B9BB4; --border: #344257;
+      --accent-cyan: #00E5FF; --accent-gold: #FFD166; --accent-violet: #9D4EDD; --radius: 6px;
+    }
+    [data-theme="steel-tactical"][data-mode="light"] {
+      --bg: #E2E8F0; --panel: #F8FAFC; --panel-alt: #CBD5E1; --text: #0F172A; --muted: #475569; --border: #64748B;
+      --accent-cyan: #0369A1; --accent-gold: #B45309; --accent-violet: #6D28D9; --radius: 6px;
+    }
+
+    /* Theme 7: Parchment */
+    [data-theme="parchment"][data-mode="dark"] {
+      --bg: #171411; --panel: #221E1A; --panel-alt: #2E2822; --text: #F5EFE6; --muted: #B8ACA0; --border: #4A4036;
+      --accent-cyan: #38BDF8; --accent-gold: #FFD166; --accent-violet: #C084FC; --radius: 8px;
+    }
+    [data-theme="parchment"][data-mode="light"] {
+      --bg: #F7F2E7; --panel: #FFFDF9; --panel-alt: #EFE6D5; --text: #27211C; --muted: #5C5046; --border: #D5C7B2;
+      --accent-cyan: #0369A1; --accent-gold: #B45309; --accent-violet: #6D28D9; --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+    }
+    .container { max-width: 1480px; margin: 0 auto; padding: 24px; }
+    header {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block; padding: 4px 10px; border-radius: 4px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+      border: 1px solid var(--accent-cyan); color: var(--accent-cyan);
+    }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    select, button, a.btn {
+      background: var(--panel); color: var(--text); border: 1px solid var(--border);
+      padding: 8px 12px; border-radius: var(--radius); font-family: var(--font-mono);
+      font-size: 12px; cursor: pointer; text-decoration: none;
+    }
+    a.btn-primary {
+      background: var(--accent-cyan); color: #0B1019; font-weight: 700; border-color: var(--accent-cyan);
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 18px; margin-top: 22px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 22px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow);
+    }
+    .card h2, .card h3 { margin-top: 0; }
+    .mono { font-family: var(--font-mono); font-size: 12px; }
+    .muted { color: var(--muted); }
+    .cyan { color: var(--accent-cyan); }
+    .gold { color: var(--accent-gold); }
+    .violet { color: var(--accent-violet); }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); }
+    th { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--accent-cyan); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <span class="badge">INDUSTRIAL GASES &amp; CRYOGENICS • 1,020 FRAMES @ 30 FPS</span>
+        <h1 style="margin: 8px 0 4px 0; font-size: 24px;">Cryogenic Feed Purification — Product, Process &amp; Architecture Dashboard</h1>
+        <div class="mono muted">Grounded in Air Products Cryogenic Air Separation Architecture | Palette: #0B1019 • #344257 • #00E5FF • #FFD166 • #9D4EDD</div>
+      </div>
+      <div class="controls">
+        <label class="mono muted" for="themeSelect">Theme:</label>
+        <select id="themeSelect">
+          <option value="cosmic-cyber">Cosmic Cyber</option>
+          <option value="bento-grid">Bento Grid</option>
+          <option value="swiss-architect">Swiss Architect</option>
+          <option value="aqua-web">Aqua Web 2.0</option>
+          <option value="pop-brutalist">Pop Brutalist</option>
+          <option value="steel-tactical">Steel Tactical</option>
+          <option value="parchment">Parchment</option>
+        </select>
+        <button id="modeBtn" type="button">Toggle Light/Dark</button>
+        <a class="btn btn-primary" href="./index.html">Launch Interactive 1,020-Frame Stage</a>
+      </div>
+    </header>
+
+    <!-- 5-Act State Machine Pipeline Visualization (No External Deps) -->
+    <div class="card" style="margin-top: 22px;">
+      <div class="mono cyan" style="font-weight: 700;">DETERMINISTIC 5-ACT TIMELINE &amp; STATE MACHINE (34.00 SECONDS / 1,020 FRAMES)</div>
+      <div class="grid-5">
+        <div class="card" style="background: var(--panel-alt);">
+          <div class="mono cyan">ACT I • FRAMES 0–149 (0–5s)</div>
+          <h3 style="margin: 6px 0;">Upstream Assembly</h3>
+          <p class="muted" style="font-size: 13px; margin: 0;">Establishes MAC + Aftercooler + Twin PPU Adsorber Vessels upstream of Cold Box, followed by a measured three-quarter push toward Vessel A.</p>
+        </div>
+        <div class="card" style="background: var(--panel-alt);">
+          <div class="mono cyan">ACT II • FRAMES 150–299 (5–10s)</div>
+          <h3 style="margin: 6px 0;">H₂O &amp; CO₂ Adsorption</h3>
+          <p class="muted" style="font-size: 13px; margin: 0;">2.22× sectional cutaway of Vessel A. Lower alumina bed traps H₂O; upper 13X zeolite bed captures CO₂ ahead of the advancing Mass Transfer Zone.</p>
+        </div>
+        <div class="card" style="background: var(--panel-alt);">
+          <div class="mono cyan">ACT III • FRAMES 300–509 (10–17s)</div>
+          <h3 style="margin: 6px 0;">Purified Feed Path</h3>
+          <p class="muted" style="font-size: 13px; margin: 0;">Tracks dry, CO₂-free feed (Cyan #00E5FF) through KV-201 and dust filter while keeping trace-CO₂ analyzer and ΔP interlocks (Violet #9D4EDD) distinct.</p>
+        </div>
+        <div class="card" style="background: var(--panel-alt);">
+          <div class="mono gold">ACT IV • FRAMES 510–749 (17–25s)</div>
+          <h3 style="margin: 6px 0;">Thermal Regeneration</h3>
+          <p class="muted" style="font-size: 13px; margin: 0;">Follows Vessel B counter-current heated waste-N₂ purge (Gold #FFD166) with a synchronized qualitative thermal-pulse &amp; elution inset.</p>
+        </div>
+        <div class="card" style="background: var(--panel-alt);">
+          <div class="mono violet">ACT V • FRAMES 750–1019 (25–34s)</div>
+          <h3 style="margin: 6px 0;">Cold-Box Protection</h3>
+          <p class="muted" style="font-size: 13px; margin: 0;">Pulls back to stable system overview showing protected BAHX micro-passages and distillation column while retaining ΔP loss, purge overhead, and uncertainty.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 Strategic Product & Engineering Definitions -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="mono cyan">STRATEGIC PRODUCT DEFINITION (1–10)</div>
+        <table>
+          <tbody>
+            <tr><th>1. What the product is</th><td>A deterministic, code-driven 34-second (1,020-frame @ 30fps) interactive anatomy explainer and technical publication dissecting cryogenic air separation feed purification (PPU).</td></tr>
+            <tr><th>2. Who it is for</th><td>Process engineers, ASU reliability leads, technical buyers, industrial gas educators, and enterprise engineering teams evaluating technical simulation architecture.</td></tr>
+            <tr><th>3. Why it wins</th><td>Replaces static P&amp;ID diagrams and decorative 3D marketing videos with a frame-exact, interactive cutaway that preserves mass/energy accounting and explicit technical limits.</td></tr>
+            <tr><th>4. How it is structured</th><td>Pure TypeScript frame state engine (<code>computeFrameState(0..1019)</code>) driving a 1600×900 orthographic/isometric HTML5 Canvas renderer, interactive scrubber, and embedded Medium technical article.</td></tr>
+            <tr><th>5. How users discover it</th><td>Technical search intent around ASU freeze-out prevention, Pre-Purification Unit (PPU) layered alumina/zeolite beds, TSA regeneration cycles, and Medium/GitHub engineering showcases.</td></tr>
+            <tr><th>6. How users engage</th><td>Scrubbing frame-by-frame across the 5 camera acts, toggling ortho grids, sectional callouts, breakthrough uncertainty bands, and subsystem node isolation.</td></tr>
+            <tr><th>7. How users convert</th><td>Interactive inspection of engineering rigor leads technical buyers to request custom deterministic process explainers, digital-twin frontends, or technical documentation systems.</td></tr>
+            <tr><th>8. How it makes money</th><td>Productized B2B technical communication &amp; interactive industrial simulation modules for energy, cryogenics, semiconductor gas, and chemical equipment vendors.</td></tr>
+            <tr><th>9. How it launches</th><td>Deployed via GitHub repository + live GitHub Pages preview alongside an SEO/GEO/AEO-optimized Medium editorial with custom technical Hero illustration.</td></tr>
+            <tr><th>10. Post-launch evolution</th><td>Repurposes across industrial verticals (PSA hydrogen purification, LNG dehydration, direct air capture sorbents, membrane separation trains) by swapping the deterministic state schema.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="mono gold">FACTUAL GUARDRAILS &amp; MASS/ENERGY ACCOUNTING</div>
+        <table>
+          <thead>
+            <tr><th>Domain</th><th>Accounting &amp; Boundary Condition</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono cyan">Mass Balance</td>
+              <td><code>ṁ_feed(N₂, O₂, Ar, H₂O, CO₂) = ṁ_purified(N₂, O₂, Ar) + dm_adsorbed(H₂O, CO₂)/dt</code> in Vessel A; counter-current purge strips inventory from Vessel B into vent stream.</td>
+            </tr>
+            <tr>
+              <td class="mono gold">Energy Balance</td>
+              <td>Exothermic heat of adsorption (<code>+ΔH_ads</code>) travels with the active Mass Transfer Zone; regeneration heater supplies desorption enthalpy (<code>+Q̇_heater</code>) in Gold overlay.</td>
+            </tr>
+            <tr>
+              <td class="mono violet">Visible Losses &amp; Uncertainty</td>
+              <td>Retains packed-bed frictional pressure drop (<code>ΔP_bed</code>), dry waste-N₂ regeneration purge consumption, and a shaded breakthrough uncertainty envelope on qualitative curves.</td>
+            </tr>
+            <tr>
+              <td class="mono muted">Technical Limits</td>
+              <td>Adsorbents and cycles vary (TSA, PSA, thermally enhanced PSA). No regeneration recipe, proprietary geometry, or 100% contaminant-removal guarantee is claimed.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const select = document.getElementById('themeSelect');
+      const modeBtn = document.getElementById('modeBtn');
+      const savedTheme = localStorage.getItem('cryo_dashboard_theme') || 'cosmic-cyber';
+      const savedMode = localStorage.getItem('cryo_dashboard_mode') || 'dark';
+      html.setAttribute('data-theme', savedTheme);
+      html.setAttribute('data-mode', savedMode);
+      select.value = savedTheme;
+
+      select.addEventListener('change', (e) => {
+        const val = e.target.value;
+        html.setAttribute('data-theme', val);
+        localStorage.setItem('cryo_dashboard_theme', val);
+      });
+
+      modeBtn.addEventListener('click', () => {
+        const cur = html.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-mode', cur);
+        localStorage.setItem('cryo_dashboard_mode', cur);
+      });
+    })();
+  </script>
+</body>
+</html>
